@@ -1,0 +1,137 @@
+<!-- ______FORMULARIO 2______________________________________________________________________________________________ -->
+<div class="container">
+<mat-card id="form2">
+    <mat-card-header>
+      <mat-card-title>Create your account here:</mat-card-title>
+      <mat-card-subtitle>Fill in your data</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form action="#" id="main-form" (ngSubmit)="caixaDialog2()" [formGroup]="personalData">
+        <div class="form-row">
+          <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input type="text" matInput placeholder="Your name..."
+            autocomplete="off" formControlName="name">
+            <mat-error>
+              <span *ngIf="personalData.controls['name'].getError('required')">
+                This field is required
+              </span>
+            </mat-error>
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill">
+            <mat-label>Lastname</mat-label>
+            <input type="text" matInput placeholder="Your surname..."
+              autocomplete="off" formControlName="lastname">
+              <mat-error>
+                <span *ngIf="personalData.controls['lastname'].getError('required')">
+                  This field is required
+                </span>
+              </mat-error>
+          </mat-form-field>
+        </div>
+  
+        <div class="form-row">
+          <mat-form-field appearance="fill">
+            <mat-label>Username</mat-label>
+            <input type="text" matInput placeholder="Your username..."
+              autocomplete="off" formControlName="username">            
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Individual Registration</mat-label>
+            <input type="text" matInput placeholder="Your personal registration..."
+              autocomplete="off" formControlName="CPF">
+              <mat-error>
+                <span *ngIf="personalData.controls['CPF'].getError('required')">
+                  This field is required
+                </span>
+              </mat-error>              
+          </mat-form-field>
+        </div>
+  
+        <div class="form-row">
+          <mat-form-field appearance="fill">
+            <mat-label>Address</mat-label>
+            <input type="text" matInput placeholder="Your address..."
+              autocomplete="off" formControlName="address">
+              <mat-error>
+                <span *ngIf="personalData.controls['address'].getError('required')">
+                  This field is required
+                </span>
+              </mat-error>             
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Complement</mat-label>
+            <input type="text" matInput placeholder="Address complement..."
+              autocomplete="off" formControlName="complement">
+              <mat-error>
+                <span *ngIf="personalData.controls['complement'].getError('required')">
+                  This field is required
+                </span>
+              </mat-error>              
+          </mat-form-field>
+        </div>
+
+        <div formArrayName="tels" class="form-row col">
+          <mat-form-field appearance="fill" class="grow"
+          *ngFor="let c of tels.controls; let i = index">
+            <mat-label>Telephone</mat-label>
+            <input type="tel" matInput placeholder='Enter your contact number:'
+            [formControlName]="i">
+            <mat-error>
+              <span *ngIf="personalData.controls['tels'].getError('required')">
+                This field is required
+              </span>
+            </mat-error>  
+          </mat-form-field>
+        </div>
+
+        <div class="icon">
+          <button mat-icon-button color="primary" type="button" (click)="newContact()">
+            <mat-icon>add</mat-icon>
+          </button>
+          <p>------------------ Add/Remove phone number ------------------</p>
+          <button mat-icon-button color="primary" type="button" (click)="deleteContact()">
+           <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+
+        <div class="form-row">
+          <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput placeholder="Your password:"
+             formControlName="password1">
+              <mat-error>
+                <span *ngIf="personalData.controls['password1'].getError('required')">
+                  This field is required
+                </span>
+              
+              </mat-error>             
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Password Confirmation</mat-label>
+            <input type="password" matInput placeholder="Confirm your password"
+             formControlName="confPassword">
+              <mat-error>
+                <span *ngIf="personalData.controls['confPassword'].getError('required')">
+                  This field is required.
+                </span>
+                <span *ngIf="confirmPassword(personalData.controls['password1'].value,
+                personalData.controls['confPassword'].value)">Passwords do not match</span>
+              </mat-error>              
+          </mat-form-field>
+        </div>
+  
+        <div class="form-row col">
+          <button mat-raised-button type="submit" color="primary" class="grow"
+          [disabled]="personalData.invalid || confirmPassword(personalData.controls['password1'].value,
+          personalData.controls['confPassword'].value )"
+          >Register</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

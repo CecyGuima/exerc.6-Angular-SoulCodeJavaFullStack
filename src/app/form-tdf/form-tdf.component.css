@@ -1,0 +1,40 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+}
+
+#form1 {
+    background: #fdfdfd;
+    border-radius: 15px;
+    border: 1px solid #0e0c86;
+}
+
+#main-form {
+    width: 420px;
+}
+
+mat-card-title {
+    color: #132cb8;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+mat-label {
+    color: #0e0c86;
+    font-size: 12px;
+}
+
+.col {
+    flex-direction: column;
+}
+
+.grow {
+    width: 100%;
+}

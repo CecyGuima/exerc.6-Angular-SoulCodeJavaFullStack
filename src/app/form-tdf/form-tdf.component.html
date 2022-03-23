@@ -1,0 +1,140 @@
+<div class="container">
+    <mat-card id="form1">
+      <mat-card-header>
+        <mat-card-title>Olá! Que bom te ver por aqui! :)</mat-card-title>
+        <mat-card-subtitle>Cadastre-se</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <form action="#" id="main-form" (ngSubmit)="caixaDialog()" #form="ngForm">
+          <div class="form-row">
+            <mat-form-field appearance="fill">
+              <mat-label>Nome</mat-label>
+              <input type="text" matInput placeholder="Seu nome:"
+              [(ngModel)]="nome" name="nome" autocomplete="off"
+              required minlength="3" #inputNome="ngModel">
+              <mat-error *ngIf="inputNome.invalid">
+                <span *ngIf="inputNome.errors?.['minlength']">
+                  Preencha a quantidade mínima de caracteres (3).
+                </span>
+                <span *ngIf="inputNome.errors?.['required']">
+                  Este campo é obrigatório.
+                </span>
+              </mat-error>
+            </mat-form-field>
+  
+            <mat-form-field appearance="fill">
+              <mat-label>Sobrenome</mat-label>
+              <input type="text" matInput placeholder="Seu sobrenome:"
+              [(ngModel)]="sobrenome" name="sobrenome"
+              autocomplete="off" required>
+              <mat-error>Este campo é obrigatório</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+            <mat-form-field appearance="fill">
+              <mat-label>Nome de Usuário</mat-label>
+              <input type="text" matInput placeholder="Seu nome de usuário:"
+              [(ngModel)]="nomeusuario" name="nomeusuario"
+              autocomplete="off">
+            </mat-form-field>
+  
+            <mat-form-field appearance="fill">
+              <mat-label>CPF</mat-label>
+              <input type="text" matInput placeholder="Seu CPF:"
+              [(ngModel)]="CPF" name="CPF" autocomplete="off"
+              required minlength="11" #inputCPF="ngModel">
+              <mat-error *ngIf="inputCPF.invalid">
+                <span *ngIf="inputCPF.errors?.['minlength']">
+                  Preencha a quantidade mínima de caracteres (11).
+                </span>
+                <span *ngIf="inputCPF.errors?.['required']">
+                  Este campo é obrigatório.
+                </span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+  
+          <div class="form-row">
+            <mat-form-field appearance="fill" class="grow">
+              <mat-label>Endereço</mat-label>
+              <input type="text" matInput placeholder="Seu endereço:"
+              [(ngModel)]="endereco" name="endereco" autocomplete="off"
+              required minlength="8" #inputEndereco="ngModel">
+              <mat-error *ngIf="inputEndereco.invalid">
+                <span *ngIf="inputEndereco.errors?.['minlength']">
+                  Preencha a quantidade mínima de caracteres (8).
+                </span>
+                <span *ngIf="inputEndereco.errors?.['required']">
+                  Este campo é obrigatório.
+                </span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+            <mat-form-field appearance="fill">
+              <mat-label>Complemento</mat-label>
+              <input type="text" matInput placeholder="Digite o complemento"
+              [(ngModel)]="complemento" name="complemento"
+              autocomplete="off">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Contato</mat-label>
+              <input type="text" matInput placeholder="Seu telefone:"
+              [(ngModel)]="contato" name="contato" autocomplete="off"
+              required minlength="11" #inputContato="ngModel">
+              <mat-error *ngIf="inputContato.invalid">
+                <span *ngIf="inputContato.errors?.['minlength']">
+                  Preencha a quantidade mínima de caracteres (11).
+                </span>
+                <span *ngIf="inputContato.errors?.['required']">
+                  Este campo é obrigatório.
+                </span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+            <mat-form-field appearance="fill">
+              <mat-label>Senha</mat-label>
+              <input type="password" matInput placeholder="Digite sua senha:"
+              [(ngModel)]="senha" name="senha" autocomplete="off"
+              required minlength="6" #inputSenha="ngModel">
+              <mat-error *ngIf="inputSenha.invalid">
+                <span *ngIf="inputSenha.errors?.['minlength']">
+                  Preencha a quantidade mínima de caracteres (6).
+                </span>
+                <span *ngIf="inputSenha.errors?.['required']">
+                  Este campo é obrigatório.
+                </span>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Confirmação de Senha</mat-label>
+              <input type="password" matInput placeholder="Confirme sua senha:"
+              [(ngModel)]="confsenha" name="confsenha" autocomplete="off"
+              required minlength="6" #inputConfSenha="ngModel">
+              <mat-error *ngIf="inputConfSenha.invalid || inputConfSenha.value != inputSenha.value">
+                <span *ngIf="inputConfSenha.errors?.['minlength']">
+                  Preencha a quantidade mínima de caracteres (6).
+                </span>
+                <span *ngIf="inputConfSenha.errors?.['required']">
+                  Este campo é obrigatório.
+                </span>
+                <span *ngIf="confirmarSenhas(inputSenha.value, inputConfSenha.value)">
+                  SENHA NÃO CONFERE.</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+  
+          <div class="form-row col">
+            <button mat-raised-button type="submit" color="warn" class="grow"
+            [disabled]="form.invalid || confirmarSenhas(inputSenha.value, inputConfSenha.value)"
+            >Cadastrar</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
